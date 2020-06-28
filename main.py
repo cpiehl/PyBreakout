@@ -24,7 +24,7 @@ walls = {
 
 paddle = Paddle(WIDTH - WALL_WIDTH, HEIGHT / 2)
 
-ball = Ball(WIDTH / 2, HEIGHT / 2, -0.1, -0.1)
+ball = Ball(WIDTH / 2, HEIGHT / 2, 0.1, 0)
 
 blocks = []
 block_width = 20
@@ -65,6 +65,7 @@ while not done:
 	# paddle collision
 	if ball.detectCollision(paddle):
 		ball.vx *= -1
+		ball.vy = (ball.y - paddle.y - (paddle.height / 2)) / 1000 # steer ball by hitting off-center
 
 	# block collisions
 	for block in blocks:
@@ -76,8 +77,8 @@ while not done:
 		# reset ball position
 		ball.x = WIDTH / 2
 		ball.y = HEIGHT / 2
-		ball.vx = -0.1
-		ball.vy = -0.1
+		ball.vx = 0.1
+		ball.vy = 0
 
 	# clear screen
 	screen.fill((0, 0, 0))
