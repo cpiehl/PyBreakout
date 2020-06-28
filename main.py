@@ -12,6 +12,9 @@ HEIGHT = 600
 WALL_WIDTH = 20
 PADDING = 10
 
+BLOCK_COLS = 3
+BLOCK_ROWS = 10
+
 walls = {
 	'top': Wall(0, 0, WIDTH, WALL_WIDTH),
 	'left': Wall(0, 0, WALL_WIDTH, HEIGHT),
@@ -23,8 +26,13 @@ paddle = Paddle(WIDTH - WALL_WIDTH, HEIGHT / 2)
 
 ball = Ball(WIDTH / 2, HEIGHT / 2, -0.1, -0.1)
 blocks = []
-for n in range(4): # 0, 1, 2, 3
-	blocks.append(Block(WALL_WIDTH + PADDING, WALL_WIDTH + PADDING + (n * (PADDING + Block.height))))
+block_width = 20
+block_height = (HEIGHT - (2 * WALL_WIDTH) - PADDING) / BLOCK_ROWS
+for nx in range(BLOCK_COLS): # 0, 1, 2, 3
+	for ny in range(BLOCK_ROWS): # 0, 1, 2, 3
+		x = WALL_WIDTH + PADDING + (nx * (block_width + PADDING))
+		y = WALL_WIDTH + PADDING + (ny * block_height)
+		blocks.append(Block(x, y, block_width, block_height - PADDING))
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 done = False
