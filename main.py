@@ -25,6 +25,7 @@ walls = {
 paddle = Paddle(WIDTH - WALL_WIDTH, HEIGHT / 2)
 
 ball = Ball(WIDTH / 2, HEIGHT / 2, -0.1, -0.1)
+
 blocks = []
 block_width = 20
 block_height = (HEIGHT - (2 * WALL_WIDTH) - PADDING) / BLOCK_ROWS
@@ -66,12 +67,9 @@ while not done:
 		ball.vx *= -1
 
 	# block collisions
-	# for block in blocks:
-	# 	if block.alive:
-	# 		collideX = (block.x + block.WIDTH) >= ball.x and block.x <= (ball.x + ball.SIZE)
-	# 		collideY = (block.y + block.HEIGHT) >= ball.y and block.y <= (ball.y + ball.SIZE)
-
-	# 			block.alive = False
+	for block in blocks:
+		if block.detectCollision(ball):
+			block.alive = False
 
 	# lose condition
 	if ball.detectCollision(walls['right']):

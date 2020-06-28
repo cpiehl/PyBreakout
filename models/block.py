@@ -16,5 +16,4 @@ class Block(ActorInterface):
 			super().draw(screen)
 
 	def detectCollision(self, other):
-		if self.alive:
-			super().detectCollision(other)
+		return self.alive and super().detectCollision(other)
