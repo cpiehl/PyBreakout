@@ -1,6 +1,6 @@
-from models.actor import ActorInterface
+from models.actor import ActorBase
 
-class Block(ActorInterface):
+class Block(ActorBase):
 
 	color = (255, 255, 0)
 

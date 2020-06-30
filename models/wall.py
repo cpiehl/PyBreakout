@@ -1,6 +1,6 @@
-from models.actor import ActorInterface
+from models.actor import ActorBase
 
-class Wall(ActorInterface):
+class Wall(ActorBase):
 
 	color = (0, 128, 255)
 

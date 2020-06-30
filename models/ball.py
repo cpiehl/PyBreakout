@@ -1,6 +1,6 @@
-from models.actor import ActorInterface
+from models.actor import ActorBase
 
-class Ball(ActorInterface):
+class Ball(ActorBase):
 
 	width = 15
 	height = 15

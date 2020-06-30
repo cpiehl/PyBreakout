@@ -1,6 +1,6 @@
-from models.actor import ActorInterface
+from models.actor import ActorBase
 
-class Paddle(ActorInterface):
+class Paddle(ActorBase):
 
 	width = 20
 	height = 100
