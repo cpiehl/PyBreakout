@@ -69,14 +69,17 @@ while not done:
 	side = ball.detectCollision(paddle)
 	if side != Side.NONE:
 		ball.bounce(side)
-		ball.vy = (ball.y - paddle.y - (paddle.height / 2)) / (paddle.height / 2) * abs(BALL_VELOCITY) # steer ball by hitting off-center
+		offset_normalized = (ball.y - paddle.y - (paddle.height / 2)) / (paddle.height / 2) # -1 to 1, offset from center of paddle
+		ball.vy = offset_normalized * BALL_VELOCITY # steer ball by hitting off-center
 
 	# block collisions
-	for block in blocks:
+	for i in range(len(blocks) - 1, -1, -1):
+		block = blocks[i]
 		side = block.detectCollision(ball)
 		if side != Side.NONE:
 			ball.bounce(side)
-			block.alive = False
+			# block.alive = False
+			del blocks[i]
 
 	# lose condition
 	if ball.detectCollision(lose_wall) != Side.NONE:
@@ -85,6 +88,10 @@ while not done:
 		ball.y = HEIGHT / 2
 		ball.vx = BALL_VELOCITY
 		ball.vy = 0
+
+	# win condition
+	if len(blocks) == 0:
+		print("win yey")
 
 	# clear screen
 	screen.fill((0, 0, 0))
