@@ -14,6 +14,7 @@ WALL_WIDTH = 20
 PADDING = 10
 
 BALL_VELOCITY = 0.2
+PADDLE_VELOCITY = 0.2
 
 BLOCK_COLS = 5
 BLOCK_ROWS = 10
@@ -51,9 +52,9 @@ while not done:
 	# keyboard handling
 	pressed = pygame.key.get_pressed()
 	if pressed[pygame.K_UP] and paddle.detectCollision(walls['top']) == Side.NONE:
-		paddle.y -= 0.1
+		paddle.y -= PADDLE_VELOCITY
 	if pressed[pygame.K_DOWN] and paddle.detectCollision(walls['bottom']) == Side.NONE:
-		paddle.y += 0.1
+		paddle.y += PADDLE_VELOCITY
 
 	# physics stuff
 	ball.update()
